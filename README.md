@@ -8,7 +8,7 @@ That approach has taken me from learning sciences into full-stack engineering, s
 
 Taipei, Taiwan · NTNU, double major in [Learning Sciences](https://www.upls.ntnu.edu.tw/) (cognitive science and HCI applied to how people learn) + Computer Science · Senior, graduating 2027  
 GPA 4.00 · Class rank #2 (top 15%) · Dean's List · NTNU Programming Contest top distinction (x2)  
-[leolove3very@gmail.com](mailto:leolove3very@gmail.com) · Mandarin (native) · English
+[cw.huang.work@gmail.com](mailto:cw.huang.work@gmail.com) · Mandarin (native) · English
 
 ---
 
@@ -133,7 +133,7 @@ Reports task compression: under fixed time-on-task, three agent conditions diver
 
 An internship where I can work on a production system with real users alongside more experienced engineers — ideally in AI infrastructure, developer tools, distributed systems, or applied research. I've led small teams, contributed to other people's codebases, and coordinated with upstream maintainers, but most of my work has been in university labs. I want to find out what production engineering looks like at a larger scale — with deeper code review, shared ownership, and problems I haven't seen before. Flexible year-round on a part-time basis; available for full-time during breaks through graduation in 2027.
 
-Reach me at [leolove3very@gmail.com](mailto:leolove3very@gmail.com) — happy to chat about any of the work above.
+Reach me at [cw.huang.work@gmail.com](mailto:cw.huang.work@gmail.com) — happy to chat about any of the work above.
 
 ---
 
