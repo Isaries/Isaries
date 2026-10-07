@@ -11,15 +11,32 @@ jobs:
     runs-on: ubuntu-latest
     permissions:
       contents: write
+    env:
+      # Read-only PAT so private contributions are counted; pushes use the
+      # workflow token persisted by actions/checkout.
+      GITHUB_TOKEN: ${{ secrets.SUMMARY_GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v5
       - uses: vn7n24fzkq/github-profile-summary-cards@release
-        env:
-          # Read-only PAT so private contributions are counted; the push itself
-          # uses the workflow token persisted by actions/checkout.
-          GITHUB_TOKEN: ${{ secrets.SUMMARY_GITHUB_TOKEN }}
         with:
           USERNAME: ${{ github.repository_owner }}
           BRANCH_NAME: main
           UTC_OFFSET: 8
           THEME: github_dark
+      - uses: vn7n24fzkq/github-profile-summary-cards@release
+        with:
+          USERNAME: ${{ github.repository_owner }}
+          BRANCH_NAME: main
+          UTC_OFFSET: 8
+          THEME: github
+      - uses: yoshi389111/github-profile-3d-contrib@latest
+        env:
+          USERNAME: ${{ github.repository_owner }}
+      - name: Commit 3D contribution graph
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add profile-3d-contrib
+          if git commit -m "Generate 3D contribution graph"; then
+            git push
+          fi
