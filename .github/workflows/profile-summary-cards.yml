@@ -12,7 +12,7 @@ jobs:
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: vn7n24fzkq/github-profile-summary-cards@release
         env:
           # Read-only PAT so private contributions are counted; the push itself
