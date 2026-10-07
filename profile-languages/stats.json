@@ -1,7 +1,9 @@
 {
   "commits": 7567,
   "repositories": 46,
-  "merged_prs": 131,
+  "prs_merged": 256,
+  "prs_authored_merged": 131,
+  "prs_merged_by_user": 240,
   "reviews": 97,
   "restricted_contributions": 0
 }
