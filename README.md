@@ -92,7 +92,9 @@ GPA 4.01 / 4.3 · Department rank 2 of 14 · Academic Achievement Award · NTNU 
 **Frontend:** Vue 3 · React · Next.js · Angular · Tailwind · Vite  
 **Data:** PostgreSQL · MySQL · Redis · Qdrant · Neo4j · SQLite  
 **AI/ML:** OpenAI · Anthropic · MCP · RAG · GraphRAG · PyTorch Geometric · XGBoost  
-**Infra:** Docker · gVisor · Nginx · Cloudflare · GitHub Actions · Bash
+**Infra:** Docker · gVisor · Nginx · Cloudflare · GitHub Actions · Bash  
+**Engineering:** System design · API design · Testing strategy · CI/CD  
+**Security & Ops:** Access control · Sandboxing · Secrets management · Monitoring & alerting · Disaster recovery
 
 ---
 
