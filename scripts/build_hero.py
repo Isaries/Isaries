@@ -6,11 +6,16 @@ before changing the script text.
 from html import escape
 from pathlib import Path
 
+# Muted (Morandi) hues to match scripts/palette.py, keeping each color's meaning: sage for success,
+# dusty rose for the problem, mauve for the merge, ochre for the observation. Light-theme values keep
+# at least 4.5:1 contrast on white.
 THEMES = {
     "dark": dict(bg="#0d1117", bar="#161b22", border="#30363d", text="#e6edf3", dim="#8b949e",
-                 prompt="#58a6ff", ok="#3fb950", bad="#f85149", merged="#a371f7", accent="#d29922"),
+                 prompt="#8fa9c0", ok="#9bb59b", bad="#c99a95", merged="#ab9cc0", accent="#c9b48a",
+                 dots=("#c48f8a", "#c9b48a", "#9bb59b")),
     "light": dict(bg="#ffffff", bar="#f6f8fa", border="#d0d7de", text="#1f2328", dim="#59636e",
-                  prompt="#0969da", ok="#1a7f37", bad="#cf222e", merged="#8250df", accent="#9a6700"),
+                  prompt="#4f6a82", ok="#5a7560", bad="#9c5f5a", merged="#6f5f88", accent="#7d6a43",
+                  dots=("#c48f8a", "#c9b48a", "#9bb59b")),
 }
 
 # (kind, [(css_class, text), ...]); "cmd" lines are typed, others appear at once.
@@ -96,7 +101,7 @@ text{{font:{FONT}px ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,"Libera
 <rect x=".5" y=".5" width="{W - 1}" height="{h - 1}" rx="10" fill="{c["bg"]}" stroke="{c["border"]}"/>
 <path d="M.5 10.5a10 10 0 0 1 10-10h{W - 21}a10 10 0 0 1 10 10v{BAR_H - 10}h-{W - 1}z" fill="{c["bar"]}"/>
 <line x1=".5" y1="{BAR_H + .5}" x2="{W - .5}" y2="{BAR_H + .5}" stroke="{c["border"]}"/>
-<circle cx="20" cy="18" r="6" fill="#ff5f57"/><circle cx="40" cy="18" r="6" fill="#febc2e"/><circle cx="60" cy="18" r="6" fill="#28c840"/>
+{"".join(f'<circle cx="{20 + 20 * i}" cy="18" r="6" fill="{dot}"/>' for i, dot in enumerate(c["dots"]))}
 <text x="{W / 2}" y="22" text-anchor="middle" class="title">~/WISE-API   (upstream, UC Berkeley)</text>
 <clipPath id="c"><rect x="1" y="{BAR_H + 1}" width="{W - 2}" height="{h - BAR_H - 2}"/></clipPath>
 <g clip-path="url(#c)">
