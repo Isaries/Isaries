@@ -17,21 +17,32 @@ jobs:
       GITHUB_TOKEN: ${{ secrets.SUMMARY_GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v5
-      # No THEME: each run wipes the output folder, so a per-theme run would
-      # delete the other theme the README's <picture> elements rely on.
+      # Each run wipes profile-summary-card-output, so the light theme is set
+      # aside before the dark run and restored afterwards.
       - uses: vn7n24fzkq/github-profile-summary-cards@release
         with:
           USERNAME: ${{ github.repository_owner }}
           BRANCH_NAME: main
           UTC_OFFSET: 8
+          THEME: github
+          AUTO_PUSH: false
+      - run: mv profile-summary-card-output/github "$RUNNER_TEMP/github"
+      - uses: vn7n24fzkq/github-profile-summary-cards@release
+        with:
+          USERNAME: ${{ github.repository_owner }}
+          BRANCH_NAME: main
+          UTC_OFFSET: 8
+          THEME: github_dark
+          AUTO_PUSH: false
+      - run: mv "$RUNNER_TEMP/github" profile-summary-card-output/github
       - uses: yoshi389111/github-profile-3d-contrib@latest
         env:
           USERNAME: ${{ github.repository_owner }}
-      - name: Commit 3D contribution graph
+      - name: Commit generated images
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
-          git add profile-3d-contrib
-          if git commit -m "Generate 3D contribution graph"; then
+          git add -A profile-summary-card-output profile-3d-contrib
+          if git commit -m "Update profile images"; then
             git push
           fi
