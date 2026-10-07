@@ -18,7 +18,7 @@ from collections import defaultdict
 from html import escape
 from pathlib import Path
 
-from palette import FONT, PALETTES
+from palette import FONT, PALETTES, SERIES, SERIES_OTHER
 
 YEARS_QUERY = "query($login:String!){user(login:$login){contributionsCollection{contributionYears}}}"
 AUTHORED_QUERY = """query($login:String!,$after:String){user(login:$login){
@@ -31,14 +31,13 @@ query($login:String!,$from:DateTime!,$to:DateTime!){user(login:$login){contribut
   totalPullRequestReviewContributions
   commitContributionsByRepository(maxRepositories:100){
     contributions{totalCount}
-    repository{nameWithOwner languages(first:100){edges{size node{name color}}}}
+    repository{nameWithOwner languages(first:100){edges{size node{name}}}}
   }}}}"""
 
 THEMES = {theme: dict(bg=p["bg"], border=p["border"], title=p["accent"], text=p["muted"], strong=p["fg"])
           for theme, p in PALETTES.items()}
 ROWS = 6
 ROW_H = 22
-OTHER_COLOR = "#8b949e"
 
 
 def gql(query, **variables):
@@ -83,7 +82,7 @@ def merged_prs(login, repos):
 
 
 def collect(login):
-    weights, colors = defaultdict(float), {}
+    weights = defaultdict(float)
     repos, commits, reviews, restricted = set(), 0, 0, 0
     pr_repos = set()
     for year in gql(YEARS_QUERY, login=login)["user"]["contributionsCollection"]["contributionYears"]:
@@ -104,23 +103,22 @@ def collect(login):
             total = sum(e["size"] for e in edges)
             for e in edges:
                 weights[e["node"]["name"]] += n * e["size"] / total
-                colors[e["node"]["name"]] = e["node"]["color"] or OTHER_COLOR
     authored, merged_by_user, prs = merged_prs(login, sorted(pr_repos))
     stats = dict(commits=commits, repositories=len(repos), prs_merged=prs, prs_authored_merged=authored,
                  prs_merged_by_user=merged_by_user, reviews=reviews, restricted_contributions=restricted)
-    return weights, colors, stats
+    return weights, stats
 
 
-def top_rows(weights, colors):
+def top_rows(weights):
     total = sum(weights.values())
     ranked = sorted(weights.items(), key=lambda kv: kv[1], reverse=True)
-    rows = [(name, w / total, colors[name]) for name, w in ranked[: ROWS - 1]]
+    rows = [(name, w / total, SERIES[i]) for i, (name, w) in enumerate(ranked[: ROWS - 1])]
     rest = sum(w for _, w in ranked[ROWS - 1:]) / total
     if len(ranked) == ROWS:
         name, w = ranked[-1]
-        rows.append((name, w / total, colors[name]))
+        rows.append((name, w / total, SERIES[ROWS - 1]))
     elif rest > 0:
-        rows.append(("Other", rest, OTHER_COLOR))
+        rows.append(("Other", rest, SERIES_OTHER))
     return rows
 
 
@@ -158,10 +156,10 @@ def render(rows, c):
 
 def main():
     login, out = sys.argv[1], Path(sys.argv[2])
-    weights, colors, stats = collect(login)
+    weights, stats = collect(login)
     if not weights:
         sys.exit("no commit contributions with language data")
-    rows = top_rows(weights, colors)
+    rows = top_rows(weights)
     print(" ".join(f"{k}={v}" for k, v in stats.items()))
     total = sum(weights.values())
     print(", ".join(f"{k} {w / total:.1%}" for k, w in sorted(weights.items(), key=lambda kv: -kv[1])[:10]))
