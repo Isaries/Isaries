@@ -36,23 +36,23 @@ GPA 4.01 / 4.3 · Department rank 2 of 14 · Academic Achievement Award · NTNU 
 
 <table>
   <tr>
-    <td align="center" width="150"><h3>13</h3><sub>upstream PRs</sub></td>
+    <td align="center" width="150"><h3>13</h3>upstream PRs</td>
     <td><b>13 pull requests merged upstream</b> into UC Berkeley's <a href="https://github.com/WISE-Community">WISE</a> platform (11 in WISE-API, 2 in WISE-Client): 10 security or user-facing behavior fixes and 3 test follow-ups, shipped in the project's regular releases</td>
   </tr>
   <tr>
-    <td align="center"><h3>ICCE 2026</h3><sub>first author</sub></td>
+    <td align="center"><h3>ICCE 2026</h3>first author</td>
     <td><b>Research</b>: first-author paper accepted at ICCE 2026; first-author journal manuscript in preparation</td>
   </tr>
   <tr>
-    <td align="center"><h3>Live</h3><sub>production systems</sub></td>
+    <td align="center"><h3>Live</h3>production systems</td>
     <td><b>Production systems</b> built and operated for live classrooms and active research groups, alongside coursework, research, and teaching</td>
   </tr>
   <tr>
-    <td align="center"><h3>~100</h3><sub>workshop participants</sub></td>
+    <td align="center"><h3>~100</h3>workshop participants</td>
     <td><b>Instructor &amp; TA</b>: AI-agent design workshops at 3 institutions for about 100 participants, mostly in-service teachers; TA for SQL &amp; Database Design</td>
   </tr>
   <tr>
-    <td align="center"><h3>9</h3><sub>RA appointments</sub></td>
+    <td align="center"><h3>9</h3>RA appointments</td>
     <td><b>9 research assistant appointments</b> since 2023-09, under 4 PIs (Profs. <a href="https://www.nschen.net">Nian-Shing Chen</a>, <a href="https://scholar.lib.ntnu.edu.tw/en/persons/yu-ju-lan/">Yu-Ju Lan</a>, <a href="https://web.ntnu.edu.tw/~hychang/">Hsin-Yi Chang</a>, and <a href="https://scholar.lib.ntnu.edu.tw/en/persons/cheng-chih-wu/">Cheng-Chih Wu</a>), funded by NSTC, MOST, and MOE</td>
   </tr>
 </table>
