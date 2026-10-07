@@ -38,12 +38,13 @@ jobs:
       - uses: yoshi389111/github-profile-3d-contrib@latest
         env:
           USERNAME: ${{ github.repository_owner }}
-      - run: python3 scripts/strip_3d_counts.py profile-3d-contrib
+      - run: python3 scripts/postprocess_3d.py profile-3d-contrib
+      - run: python3 scripts/build_lang_card.py ${{ github.repository_owner }} profile-languages
       - name: Commit generated images
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
-          git add -A profile-summary-card-output profile-3d-contrib
+          git add -A profile-summary-card-output profile-3d-contrib profile-languages
           if git commit -m "Update profile images"; then
             git push
           fi
