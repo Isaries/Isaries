@@ -29,7 +29,8 @@ THEMES = {
     "dark": dict(bg="#0d1117", border="#2e343b", title="#0366d6", text="#77909c", strong="#c9d1d9"),
     "light": dict(bg="#ffffff", border="#e4e2e2", title="#0366d6", text="#586069", strong="#24292f"),
 }
-ROWS = 5
+ROWS = 6
+ROW_H = 22
 OTHER_COLOR = "#8b949e"
 
 
@@ -95,7 +96,7 @@ def arc(cx, cy, r_out, r_in, a0, a1):
 def render(rows, c):
     legend, slices, a = [], [], 0.0
     for i, (name, share, color) in enumerate(rows):
-        y = 58 + i * 25.2
+        y = 56 + i * ROW_H
         legend.append(
             f'<rect x="40" y="{y:.1f}" width="14" height="14" fill="{color}" stroke="{c["bg"]}"/>'
             f'<text x="62" y="{y + 12:.1f}" style="fill:{c["text"]};font-size:14px">{escape(name)}</text>'
@@ -122,7 +123,8 @@ def main():
         sys.exit("no commit contributions with language data")
     rows = top_rows(weights, colors)
     print(f"repositories={n_repos} commits={commits} restricted_contributions={restricted}")
-    print(", ".join(f"{name} {share:.1%}" for name, share, _ in rows))
+    total = sum(weights.values())
+    print(", ".join(f"{k} {w / total:.1%}" for k, w in sorted(weights.items(), key=lambda kv: -kv[1])[:10]))
     out.mkdir(parents=True, exist_ok=True)
     for theme, palette in THEMES.items():
         (out / f"languages-{theme}.svg").write_text(render(rows, palette), encoding="utf-8", newline="\n")
