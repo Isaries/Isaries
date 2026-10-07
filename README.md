@@ -76,7 +76,10 @@ GPA 4.01 / 4.3 · Department rank 2 of 14 · Academic Achievement Award · NTNU 
   <img src="./profile-summary-card-output/github_dark/0-profile-details.svg" alt="Profile details and contribution history" width="100%" />
 </p>
 <p align="center">
+  <img src="./profile-summary-card-output/github_dark/1-repos-per-language.svg" alt="Repos per language" width="49%" />
   <img src="./profile-summary-card-output/github_dark/2-most-commit-language.svg" alt="Most commit language" width="49%" />
+</p>
+<p align="center">
   <img src="./profile-summary-card-output/github_dark/4-productive-time.svg" alt="Productive time" width="49%" />
 </p>
 
