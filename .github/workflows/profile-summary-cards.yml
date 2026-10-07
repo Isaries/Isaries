@@ -40,6 +40,7 @@ jobs:
           USERNAME: ${{ github.repository_owner }}
       - run: python3 scripts/postprocess_3d.py profile-3d-contrib
       - run: python3 scripts/build_lang_card.py ${{ github.repository_owner }} profile-languages
+      - run: python3 scripts/check_readme_images.py README.md
       - name: Commit generated images
         run: |
           git config user.name github-actions
