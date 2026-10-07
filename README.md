@@ -93,20 +93,15 @@ GPA 4.01 / 4.3 · Department rank 2 of 14 · Academic Achievement Award · NTNU 
 </p>
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="./profile-summary-card-output/github_dark/1-repos-per-language.svg" />
-    <img src="./profile-summary-card-output/github/1-repos-per-language.svg" alt="Repos per language" width="49%" />
+    <source media="(prefers-color-scheme: dark)" srcset="./profile-languages/languages-dark.svg" />
+    <img src="./profile-languages/languages-light.svg" alt="Languages by commit, weighted by each repository's language mix" width="49%" />
   </picture>
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="./profile-summary-card-output/github_dark/2-most-commit-language.svg" />
-    <img src="./profile-summary-card-output/github/2-most-commit-language.svg" alt="Most commit language" width="49%" />
-  </picture>
-</p>
-<p align="center">
   <picture>
     <source media="(prefers-color-scheme: dark)" srcset="./profile-summary-card-output/github_dark/4-productive-time.svg" />
     <img src="./profile-summary-card-output/github/4-productive-time.svg" alt="Productive time" width="49%" />
   </picture>
 </p>
+<p align="center"><sub>Languages: each repository's commits are split by that repository's language mix, across personal, organization and private repositories.</sub></p>
 
 ---
 
