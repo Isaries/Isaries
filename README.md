@@ -1,6 +1,7 @@
-<p align="center">
-  <img src="https://capsule-render.vercel.app/api?type=waving&height=200&color=0:0d1117,100:1f6feb&text=Chen-Wei%20Huang&fontColor=ffffff&fontSize=48&fontAlignY=36&desc=Where%20education%20meets%20infrastructure&descSize=18&descAlignY=58" alt="Chen-Wei Huang: where education meets infrastructure" width="100%" />
-</p>
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://capsule-render.vercel.app/api?type=waving&height=200&color=0:0d1117,100:1f6feb&text=Chen-Wei%20Huang&fontColor=ffffff&fontSize=48&fontAlignY=36&desc=Where%20education%20meets%20infrastructure&descSize=18&descAlignY=58" />
+  <img src="https://capsule-render.vercel.app/api?type=waving&height=200&color=0:0969da,100:54aeff&text=Chen-Wei%20Huang&fontColor=ffffff&fontSize=48&fontAlignY=36&desc=Where%20education%20meets%20infrastructure&descSize=18&descAlignY=58" alt="Chen-Wei Huang: where education meets infrastructure" width="100%" />
+</picture>
 
 <h1 align="center">Hi, I'm Leo (Chen-Wei Huang)</h1>
 
@@ -17,6 +18,13 @@
 Most of my projects started from a concrete need: a live classroom platform that had to be taken over and kept running, a lab that wanted shared AI infrastructure without scattering API keys across projects, a journal whose editors checked manuscript formatting by hand. My aim in each case is the same: make the system tested, secure, and documented well enough that someone else can operate it after I leave.
 
 > The question I want to study next grows out of that work: how can we tell whether a check that reports success, such as a test, a monitor, or an access rule, is actually protecting anything?
+
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="./assets/hero-dark.svg" />
+    <img src="./assets/hero-light.svg" alt="Terminal: WISE-API builds successfully both before and after the PR #325 run-ownership fix, because the controller's test is excluded from the build. Which checks are actually protecting anything?" width="100%" />
+  </picture>
+</p>
 
 Taipei, Taiwan · NTNU, [Learning Sciences](https://www.upls.ntnu.edu.tw/) (cognitive science and HCI applied to how people learn), double major in Computer Science · Senior, graduating 2027  
 GPA 4.01 / 4.3 · Department rank 2 of 14 · Academic Achievement Award · NTNU Programming Project Competition, Project Distinction Award (x2)  
@@ -72,15 +80,32 @@ GPA 4.01 / 4.3 · Department rank 2 of 14 · Academic Achievement Award · NTNU 
 
 ## GitHub Activity
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="./profile-3d-contrib/profile-night-rainbow.svg" />
+  <img src="./profile-3d-contrib/profile-green-animate.svg" alt="3D contribution graph" width="100%" />
+</picture>
+
 <p align="center">
-  <img src="./profile-summary-card-output/github_dark/0-profile-details.svg" alt="Profile details and contribution history" width="100%" />
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="./profile-summary-card-output/github_dark/0-profile-details.svg" />
+    <img src="./profile-summary-card-output/github/0-profile-details.svg" alt="Profile details and contribution history" width="100%" />
+  </picture>
 </p>
 <p align="center">
-  <img src="./profile-summary-card-output/github_dark/1-repos-per-language.svg" alt="Repos per language" width="49%" />
-  <img src="./profile-summary-card-output/github_dark/2-most-commit-language.svg" alt="Most commit language" width="49%" />
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="./profile-summary-card-output/github_dark/1-repos-per-language.svg" />
+    <img src="./profile-summary-card-output/github/1-repos-per-language.svg" alt="Repos per language" width="49%" />
+  </picture>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="./profile-summary-card-output/github_dark/2-most-commit-language.svg" />
+    <img src="./profile-summary-card-output/github/2-most-commit-language.svg" alt="Most commit language" width="49%" />
+  </picture>
 </p>
 <p align="center">
-  <img src="./profile-summary-card-output/github_dark/4-productive-time.svg" alt="Productive time" width="49%" />
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="./profile-summary-card-output/github_dark/4-productive-time.svg" />
+    <img src="./profile-summary-card-output/github/4-productive-time.svg" alt="Productive time" width="49%" />
+  </picture>
 </p>
 
 ---
@@ -93,7 +118,7 @@ GPA 4.01 / 4.3 · Department rank 2 of 14 · Academic Achievement Award · NTNU 
 
 *Sole developer and operator on the university side for NTNU's deployment of UC Berkeley's WISE science-learning platform, which serves secondary-school science classes in Taiwan. (Private repos under [WISE-NTNU-Community](https://github.com/WISE-NTNU-Community).)*
 
-Took over the platform in July 2026 and, over 41 active days, brought 15 repositories under version control, built 3 CI/CD pipelines, and built an administration dashboard with 953 backend and 446 frontend tests. Problems found along the way that also affected upstream were fixed at the source: 13 pull requests reviewed and merged by Berkeley's maintainers, including administrator-only enforcement for user and account management ([#322](https://github.com/WISE-Community/WISE-API/pull/322)), a run-ownership check on batch group password resets ([#325](https://github.com/WISE-Community/WISE-API/pull/325)), a check that a student belongs to the run before their password can be changed ([#332](https://github.com/WISE-Community/WISE-API/pull/332)), and atomic project saves that prevent corrupted project files under rapid editing ([#358](https://github.com/WISE-Community/WISE-API/pull/358)).
+Took over the platform in July 2026 and, over 41 active days, brought 15 repositories under version control, built 3 CI/CD pipelines, and built an administration dashboard with 953 backend and 446 frontend tests. Problems found along the way that also affected upstream were fixed at the source: 13 pull requests reviewed and merged by Berkeley's maintainers, including administrator-only enforcement for user and account management [![#322](https://img.shields.io/github/pulls/detail/state/WISE-Community/WISE-API/322?label=%23322&style=flat-square)](https://github.com/WISE-Community/WISE-API/pull/322), a run-ownership check on batch group password resets [![#325](https://img.shields.io/github/pulls/detail/state/WISE-Community/WISE-API/325?label=%23325&style=flat-square)](https://github.com/WISE-Community/WISE-API/pull/325), a check that a student belongs to the run before their password can be changed [![#332](https://img.shields.io/github/pulls/detail/state/WISE-Community/WISE-API/332?label=%23332&style=flat-square)](https://github.com/WISE-Community/WISE-API/pull/332), and atomic project saves that prevent corrupted project files under rapid editing [![#358](https://img.shields.io/github/pulls/detail/state/WISE-Community/WISE-API/358?label=%23358&style=flat-square)](https://github.com/WISE-Community/WISE-API/pull/358).
 
 **Stack:** Java · Spring Boot · Angular · FastAPI · Next.js · PostgreSQL · MySQL · Docker · GitHub Actions
 
@@ -183,7 +208,10 @@ Compares three LLM tutoring agents that teach English grammar on a robot-and-tab
 ## Tech Stack
 
 <p align="center">
-  <img src="https://skillicons.dev/icons?i=py,ts,rust,java,c,fastapi,flask,spring,vue,react,nextjs,angular,tailwind,vite,postgres,mysql,redis,sqlite,pytorch,docker,nginx,cloudflare,githubactions,bash&perline=12&theme=dark" alt="Python, TypeScript, Rust, Java, C, FastAPI, Flask, Spring, Vue, React, Next.js, Angular, Tailwind, Vite, PostgreSQL, MySQL, Redis, SQLite, PyTorch, Docker, Nginx, Cloudflare, GitHub Actions, Bash" />
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://skillicons.dev/icons?i=py,ts,rust,java,c,fastapi,flask,spring,vue,react,nextjs,angular,tailwind,vite,postgres,mysql,redis,sqlite,pytorch,docker,nginx,cloudflare,githubactions,bash&perline=12&theme=dark" />
+    <img src="https://skillicons.dev/icons?i=py,ts,rust,java,c,fastapi,flask,spring,vue,react,nextjs,angular,tailwind,vite,postgres,mysql,redis,sqlite,pytorch,docker,nginx,cloudflare,githubactions,bash&perline=12&theme=light" alt="Python, TypeScript, Rust, Java, C, FastAPI, Flask, Spring, Vue, React, Next.js, Angular, Tailwind, Vite, PostgreSQL, MySQL, Redis, SQLite, PyTorch, Docker, Nginx, Cloudflare, GitHub Actions, Bash" />
+  </picture>
 </p>
 
 **Languages:** Python · TypeScript · Rust · SQL · C · Java  
@@ -205,4 +233,7 @@ Reach me at [cw.huang.work@gmail.com](mailto:cw.huang.work@gmail.com).
 
 *Last updated: 2026-10-07*
 
-<img src="https://capsule-render.vercel.app/api?type=waving&height=100&color=0:1f6feb,100:0d1117&section=footer" alt="" width="100%" />
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://capsule-render.vercel.app/api?type=waving&height=100&color=0:1f6feb,100:0d1117&section=footer" />
+  <img src="https://capsule-render.vercel.app/api?type=waving&height=100&color=0:54aeff,100:0969da&section=footer" alt="" width="100%" />
+</picture>
