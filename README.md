@@ -53,7 +53,7 @@ GPA 4.01 / 4.3 · Department rank 2 of 14 · Academic Achievement Award · NTNU 
   </tr>
   <tr>
     <td align="center"><h3>9</h3>RA appointments</td>
-    <td><b>9 research assistant appointments</b> since 2023-09, under 4 PIs (Profs. <a href="https://www.nschen.net">Nian-Shing Chen</a>, <a href="https://scholar.lib.ntnu.edu.tw/en/persons/yu-ju-lan/">Yu-Ju Lan</a>, <a href="https://web.ntnu.edu.tw/~hychang/">Hsin-Yi Chang</a>, and <a href="https://scholar.lib.ntnu.edu.tw/en/persons/cheng-chih-wu/">Cheng-Chih Wu</a>), funded by NSTC, MOST, and MOE</td>
+    <td><b>9 research assistant appointments</b> since 2023-09, under 4 PIs (Profs. <a href="https://www.nschen.net">Nian-Shing Chen</a>, <a href="https://orcid.org/0000-0003-0229-5079">Yu-Ju Lan</a>, <a href="https://web.ntnu.edu.tw/~hychang/">Hsin-Yi Chang</a>, and <a href="https://scholar.lib.ntnu.edu.tw/en/persons/cheng-chih-wu/">Cheng-Chih Wu</a>), funded by NSTC, MOST, and MOE</td>
   </tr>
 </table>
 
@@ -78,7 +78,7 @@ GPA 4.01 / 4.3 · Department rank 2 of 14 · Academic Achievement Award · NTNU 
 
 ---
 
-## Tech Stack
+## Skills
 
 <p align="center">
   <picture>
