@@ -37,7 +37,7 @@ def compact(n):
 
 def totals_group(stats):
     cells = [("commits", stats["commits"]), ("repositories", stats["repositories"]),
-             ("merged PRs", stats["merged_prs"]), ("code reviews", stats["reviews"])]
+             ("PRs merged", stats["prs_merged"]), ("code reviews", stats["reviews"])]
     parts = ['<text x="20" y="20" style="font-size: 16px; letter-spacing: 2px;" class="fill-weak">ALL TIME</text>']
     for i, (label, value) in enumerate(cells):
         x, y = 20 + (i % 2) * 210, 85 + (i // 2) * 105

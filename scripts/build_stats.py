@@ -18,9 +18,11 @@ from collections import defaultdict
 from html import escape
 from pathlib import Path
 
-USER_QUERY = """query($login:String!){user(login:$login){
-  pullRequests(states:MERGED){totalCount}
-  contributionsCollection{contributionYears}}}"""
+YEARS_QUERY = "query($login:String!){user(login:$login){contributionsCollection{contributionYears}}}"
+AUTHORED_QUERY = """query($login:String!,$after:String){user(login:$login){
+  pullRequests(states:MERGED,first:100,after:$after){pageInfo{hasNextPage endCursor} nodes{id}}}}"""
+REPO_PRS_QUERY = """query($owner:String!,$name:String!,$after:String){repository(owner:$owner,name:$name){
+  pullRequests(states:MERGED,first:100,after:$after){pageInfo{hasNextPage endCursor} nodes{id mergedBy{login}}}}}"""
 REPOS_QUERY = """
 query($login:String!,$from:DateTime!,$to:DateTime!){user(login:$login){contributionsCollection(from:$from,to:$to){
   restrictedContributionsCount
@@ -49,20 +51,49 @@ def gql(query, **variables):
         body = json.load(resp)
     if body.get("errors"):
         raise RuntimeError(body["errors"])
-    return body["data"]["user"]
+    return body["data"]
+
+
+def paginate(query, path, **variables):
+    after = None
+    while True:
+        conn = gql(query, after=after, **variables)
+        for key in path:
+            conn = conn[key]
+        yield from conn["nodes"]
+        if not conn["pageInfo"]["hasNextPage"]:
+            return
+        after = conn["pageInfo"]["endCursor"]
+
+
+def merged_prs(login, repos):
+    """PRs the user authored that were merged, plus PRs anyone authored (bots included) that the user merged.
+
+    GitHub has no "merged by" search, so the second set is collected from each repository the user
+    committed to, which is where they hold merge rights in practice.
+    """
+    authored = {pr["id"] for pr in paginate(AUTHORED_QUERY, ("user", "pullRequests"), login=login)}
+    merged_by_user = set()
+    for full_name in repos:
+        owner, name = full_name.split("/")
+        for pr in paginate(REPO_PRS_QUERY, ("repository", "pullRequests"), owner=owner, name=name):
+            if (pr["mergedBy"] or {}).get("login", "").lower() == login.lower():
+                merged_by_user.add(pr["id"])
+    return len(authored), len(merged_by_user), len(authored | merged_by_user)
 
 
 def collect(login):
     weights, colors = defaultdict(float), {}
     repos, commits, reviews, restricted = set(), 0, 0, 0
-    user = gql(USER_QUERY, login=login)
-    for year in user["contributionsCollection"]["contributionYears"]:
+    pr_repos = set()
+    for year in gql(YEARS_QUERY, login=login)["user"]["contributionsCollection"]["contributionYears"]:
         data = gql(REPOS_QUERY, login=login, **{"from": f"{year}-01-01T00:00:00Z", "to": f"{year}-12-31T23:59:59Z"})
-        data = data["contributionsCollection"]
+        data = data["user"]["contributionsCollection"]
         restricted += data["restrictedContributionsCount"]
         reviews += data["totalPullRequestReviewContributions"]
         for item in data["commitContributionsByRepository"]:
             repo = item["repository"]
+            pr_repos.add(repo["nameWithOwner"])
             # The profile repository holds README edits and these generators, not project code.
             if repo["nameWithOwner"].lower() == f"{login}/{login}".lower():
                 continue
@@ -74,8 +105,9 @@ def collect(login):
             for e in edges:
                 weights[e["node"]["name"]] += n * e["size"] / total
                 colors[e["node"]["name"]] = e["node"]["color"] or OTHER_COLOR
-    stats = dict(commits=commits, repositories=len(repos), merged_prs=user["pullRequests"]["totalCount"],
-                 reviews=reviews, restricted_contributions=restricted)
+    authored, merged_by_user, prs = merged_prs(login, sorted(pr_repos))
+    stats = dict(commits=commits, repositories=len(repos), prs_merged=prs, prs_authored_merged=authored,
+                 prs_merged_by_user=merged_by_user, reviews=reviews, restricted_contributions=restricted)
     return weights, colors, stats
 
 
