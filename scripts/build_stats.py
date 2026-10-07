@@ -1,11 +1,13 @@
-"""Render a language card that splits each repository's commits by that repository's language mix.
+"""Collect all-time profile stats and render a language card that splits each repository's commits by
+that repository's language mix.
 
 The stock cards credit every commit to a repository's primary language, so a Python + Vue project counts
 as 100% Python. Here each repository's commit count is distributed by its linguist byte shares, over all
 years and every repository the token can see (personal, organization and private).
 
-Usage: GITHUB_TOKEN=... python build_lang_card.py <login> <output_dir>
-Only aggregates are printed, because Actions logs on a public repository are public.
+Usage: GITHUB_TOKEN=... python build_stats.py <login> <output_dir>
+Writes languages-{dark,light}.svg and stats.json. Only aggregates are printed or written, because Actions
+logs and files on a public repository are public.
 """
 import json
 import math
@@ -16,10 +18,13 @@ from collections import defaultdict
 from html import escape
 from pathlib import Path
 
-YEARS_QUERY = "query($login:String!){user(login:$login){contributionsCollection{contributionYears}}}"
+USER_QUERY = """query($login:String!){user(login:$login){
+  pullRequests(states:MERGED){totalCount}
+  contributionsCollection{contributionYears}}}"""
 REPOS_QUERY = """
 query($login:String!,$from:DateTime!,$to:DateTime!){user(login:$login){contributionsCollection(from:$from,to:$to){
   restrictedContributionsCount
+  totalPullRequestReviewContributions
   commitContributionsByRepository(maxRepositories:100){
     contributions{totalCount}
     repository{nameWithOwner languages(first:100){edges{size node{name color}}}}
@@ -44,31 +49,34 @@ def gql(query, **variables):
         body = json.load(resp)
     if body.get("errors"):
         raise RuntimeError(body["errors"])
-    return body["data"]["user"]["contributionsCollection"]
+    return body["data"]["user"]
 
 
 def collect(login):
     weights, colors = defaultdict(float), {}
-    repos, commits, restricted = set(), 0, 0
-    for year in gql(YEARS_QUERY, login=login)["contributionYears"]:
+    repos, commits, reviews, restricted = set(), 0, 0, 0
+    user = gql(USER_QUERY, login=login)
+    for year in user["contributionsCollection"]["contributionYears"]:
         data = gql(REPOS_QUERY, login=login, **{"from": f"{year}-01-01T00:00:00Z", "to": f"{year}-12-31T23:59:59Z"})
+        data = data["contributionsCollection"]
         restricted += data["restrictedContributionsCount"]
+        reviews += data["totalPullRequestReviewContributions"]
         for item in data["commitContributionsByRepository"]:
             repo = item["repository"]
             # The profile repository holds README edits and these generators, not project code.
             if repo["nameWithOwner"].lower() == f"{login}/{login}".lower():
                 continue
-            edges = repo["languages"]["edges"]
-            total = sum(e["size"] for e in edges)
-            if not total:
-                continue
             n = item["contributions"]["totalCount"]
             repos.add(repo["nameWithOwner"])
             commits += n
+            edges = repo["languages"]["edges"]
+            total = sum(e["size"] for e in edges)
             for e in edges:
                 weights[e["node"]["name"]] += n * e["size"] / total
                 colors[e["node"]["name"]] = e["node"]["color"] or OTHER_COLOR
-    return weights, colors, len(repos), commits, restricted
+    stats = dict(commits=commits, repositories=len(repos), merged_prs=user["pullRequests"]["totalCount"],
+                 reviews=reviews, restricted_contributions=restricted)
+    return weights, colors, stats
 
 
 def top_rows(weights, colors):
@@ -118,16 +126,17 @@ def render(rows, c):
 
 def main():
     login, out = sys.argv[1], Path(sys.argv[2])
-    weights, colors, n_repos, commits, restricted = collect(login)
+    weights, colors, stats = collect(login)
     if not weights:
         sys.exit("no commit contributions with language data")
     rows = top_rows(weights, colors)
-    print(f"repositories={n_repos} commits={commits} restricted_contributions={restricted}")
+    print(" ".join(f"{k}={v}" for k, v in stats.items()))
     total = sum(weights.values())
     print(", ".join(f"{k} {w / total:.1%}" for k, w in sorted(weights.items(), key=lambda kv: -kv[1])[:10]))
     out.mkdir(parents=True, exist_ok=True)
     for theme, palette in THEMES.items():
         (out / f"languages-{theme}.svg").write_text(render(rows, palette), encoding="utf-8", newline="\n")
+    (out / "stats.json").write_text(json.dumps(stats, indent=2) + "\n", encoding="utf-8", newline="\n")
 
 
 if __name__ == "__main__":

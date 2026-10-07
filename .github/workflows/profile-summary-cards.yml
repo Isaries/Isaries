@@ -38,8 +38,9 @@ jobs:
       - uses: yoshi389111/github-profile-3d-contrib@latest
         env:
           USERNAME: ${{ github.repository_owner }}
-      - run: python3 scripts/postprocess_3d.py profile-3d-contrib
-      - run: python3 scripts/build_lang_card.py ${{ github.repository_owner }} profile-languages
+      - run: python3 scripts/build_stats.py ${{ github.repository_owner }} profile-languages
+      - run: python3 scripts/postprocess_3d.py profile-3d-contrib profile-languages/stats.json
+      - run: python3 scripts/patch_summary_cards.py profile-summary-card-output profile-languages/stats.json
       - run: python3 scripts/check_readme_images.py README.md
       - name: Commit generated images
         run: |
