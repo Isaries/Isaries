@@ -78,30 +78,21 @@ GPA 4.01 / 4.3 · Department rank 2 of 14 · Academic Achievement Award · NTNU 
 
 ---
 
-## GitHub Activity
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./profile-3d-contrib/profile-night-green.svg" />
-  <img src="./profile-3d-contrib/profile-green-animate.svg" alt="3D contribution graph" width="100%" />
-</picture>
+## Tech Stack
 
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="./profile-summary-card-output/github_dark/0-profile-details.svg" />
-    <img src="./profile-summary-card-output/github/0-profile-details.svg" alt="Profile details and contribution history" width="100%" />
+    <source media="(prefers-color-scheme: dark)" srcset="https://skillicons.dev/icons?i=py%2Cts%2Crust%2Cjava%2Cc%2Cfastapi%2Cflask%2Cspring%2Cvue%2Creact%2Cnextjs%2Cangular%2Ctailwind%2Cvite%2Cpostgres%2Cmysql%2Credis%2Csqlite%2Cpytorch%2Cdocker%2Cnginx%2Ccloudflare%2Cgithubactions%2Cbash&perline=12&theme=dark" />
+    <img src="https://skillicons.dev/icons?i=py,ts,rust,java,c,fastapi,flask,spring,vue,react,nextjs,angular,tailwind,vite,postgres,mysql,redis,sqlite,pytorch,docker,nginx,cloudflare,githubactions,bash&perline=12&theme=light" alt="Python, TypeScript, Rust, Java, C, FastAPI, Flask, Spring, Vue, React, Next.js, Angular, Tailwind, Vite, PostgreSQL, MySQL, Redis, SQLite, PyTorch, Docker, Nginx, Cloudflare, GitHub Actions, Bash" />
   </picture>
 </p>
-<p align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="./profile-languages/languages-dark.svg" />
-    <img src="./profile-languages/languages-light.svg" alt="Languages by commit, weighted by each repository's language mix" width="49%" />
-  </picture>
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="./profile-summary-card-output/github_dark/4-productive-time.svg" />
-    <img src="./profile-summary-card-output/github/4-productive-time.svg" alt="Productive time" width="49%" />
-  </picture>
-</p>
-<p align="center"><sub>Languages: each repository's commits are split by that repository's language mix, across personal, organization and private repositories.</sub></p>
+
+**Languages:** Python · TypeScript · Rust · SQL · C · Java  
+**Backend:** FastAPI · Flask · Spring Boot · SQLAlchemy · Pydantic · Celery  
+**Frontend:** Vue 3 · React · Next.js · Angular · Tailwind · Vite  
+**Data:** PostgreSQL · MySQL · Redis · Qdrant · Neo4j · SQLite  
+**AI/ML:** OpenAI · Anthropic · MCP · RAG · GraphRAG · PyTorch Geometric · XGBoost  
+**Infra:** Docker · gVisor · Nginx · Cloudflare · GitHub Actions · Bash
 
 ---
 
@@ -200,21 +191,30 @@ Compares three LLM tutoring agents that teach English grammar on a robot-and-tab
 
 ---
 
-## Tech Stack
+## GitHub Activity
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="./profile-3d-contrib/profile-night-green.svg" />
+  <img src="./profile-3d-contrib/profile-green-animate.svg" alt="3D contribution graph" width="100%" />
+</picture>
 
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://skillicons.dev/icons?i=py%2Cts%2Crust%2Cjava%2Cc%2Cfastapi%2Cflask%2Cspring%2Cvue%2Creact%2Cnextjs%2Cangular%2Ctailwind%2Cvite%2Cpostgres%2Cmysql%2Credis%2Csqlite%2Cpytorch%2Cdocker%2Cnginx%2Ccloudflare%2Cgithubactions%2Cbash&perline=12&theme=dark" />
-    <img src="https://skillicons.dev/icons?i=py,ts,rust,java,c,fastapi,flask,spring,vue,react,nextjs,angular,tailwind,vite,postgres,mysql,redis,sqlite,pytorch,docker,nginx,cloudflare,githubactions,bash&perline=12&theme=light" alt="Python, TypeScript, Rust, Java, C, FastAPI, Flask, Spring, Vue, React, Next.js, Angular, Tailwind, Vite, PostgreSQL, MySQL, Redis, SQLite, PyTorch, Docker, Nginx, Cloudflare, GitHub Actions, Bash" />
+    <source media="(prefers-color-scheme: dark)" srcset="./profile-summary-card-output/github_dark/0-profile-details.svg" />
+    <img src="./profile-summary-card-output/github/0-profile-details.svg" alt="Profile details and contribution history" width="100%" />
   </picture>
 </p>
-
-**Languages:** Python · TypeScript · Rust · SQL · C · Java  
-**Backend:** FastAPI · Flask · Spring Boot · SQLAlchemy · Pydantic · Celery  
-**Frontend:** Vue 3 · React · Next.js · Angular · Tailwind · Vite  
-**Data:** PostgreSQL · MySQL · Redis · Qdrant · Neo4j · SQLite  
-**AI/ML:** OpenAI · Anthropic · MCP · RAG · GraphRAG · PyTorch Geometric · XGBoost  
-**Infra:** Docker · gVisor · Nginx · Cloudflare · GitHub Actions · Bash
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="./profile-languages/languages-dark.svg" />
+    <img src="./profile-languages/languages-light.svg" alt="Languages by commit, weighted by each repository's language mix" width="49%" />
+  </picture>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="./profile-summary-card-output/github_dark/4-productive-time.svg" />
+    <img src="./profile-summary-card-output/github/4-productive-time.svg" alt="Productive time" width="49%" />
+  </picture>
+</p>
+<p align="center"><sub>Languages: each repository's commits are split by that repository's language mix, across personal, organization and private repositories.</sub></p>
 
 ---
 
