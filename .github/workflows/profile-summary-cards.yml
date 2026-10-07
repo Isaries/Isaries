@@ -17,18 +17,13 @@ jobs:
       GITHUB_TOKEN: ${{ secrets.SUMMARY_GITHUB_TOKEN }}
     steps:
       - uses: actions/checkout@v5
+      # No THEME: each run wipes the output folder, so a per-theme run would
+      # delete the other theme the README's <picture> elements rely on.
       - uses: vn7n24fzkq/github-profile-summary-cards@release
         with:
           USERNAME: ${{ github.repository_owner }}
           BRANCH_NAME: main
           UTC_OFFSET: 8
-          THEME: github_dark
-      - uses: vn7n24fzkq/github-profile-summary-cards@release
-        with:
-          USERNAME: ${{ github.repository_owner }}
-          BRANCH_NAME: main
-          UTC_OFFSET: 8
-          THEME: github
       - uses: yoshi389111/github-profile-3d-contrib@latest
         env:
           USERNAME: ${{ github.repository_owner }}
