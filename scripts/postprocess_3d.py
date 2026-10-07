@@ -2,7 +2,8 @@
 
 Removed: the star and fork counters (always 0 here) and the language pie, which credits every commit
 to a repository's primary language (scripts/build_stats.py renders the weighted card instead). The pie's
-corner is filled with all-time totals from build_stats.py's stats.json.
+corner is filled with all-time totals from build_stats.py's stats.json. Each theme's background, text and
+radar colors and its font are replaced with scripts/palette.py's, so the graph sits on the page background.
 
 Usage: python postprocess_3d.py <svg_dir> <stats.json>
 """
@@ -10,6 +11,8 @@ import json
 import re
 import sys
 from pathlib import Path
+
+from palette import FONT, GREEN, PALETTES
 
 # Icon <g> at scale(2) followed by its number; the generator emits exactly one each for stars and forks.
 COUNTER = re.compile(
@@ -46,13 +49,41 @@ def totals_group(stats):
     return f'{PIE_OPEN}{"".join(parts)}</g>'
 
 
+def is_dark(color):
+    if color.startswith("#"):
+        channels = [int(color[i:i + 2], 16) for i in (1, 3, 5)]
+    else:
+        channels = [int(c) for c in re.findall(r"\d+", color)[:3]]
+    return sum(channels) < 3 * 128
+
+
+def recolor(text):
+    bg = re.search(r"\.fill-bg \{ fill: ([^;]+); \}", text)
+    if not bg:
+        raise ValueError("background rule not found")
+    p = PALETTES["dark" if is_dark(bg.group(1)) else "light"]
+    rules = {"fill-fg": ("fill", p["fg"]), "stroke-fg": ("stroke", p["fg"]),
+             "fill-bg": ("fill", p["bg"]), "stroke-bg": ("stroke", p["bg"]),
+             "fill-strong": ("fill", p["fg"]), "fill-weak": ("fill", p["muted"]), "stroke-weak": ("stroke", p["muted"])}
+    for cls, (prop, color) in rules.items():
+        text, n = re.subn(rf"\.{cls} \{{ {prop}: [^;]+; \}}", f".{cls} {{ {prop}: {color}; }}", text, count=1)
+        if n != 1:
+            raise ValueError(f"{cls} rule not found")
+    radar = f".radar {{\nstroke-width: 4px;\nstroke: {GREEN};\nfill: {GREEN};\nfill-opacity: 0.5;\n}}"
+    text, n = re.subn(r"\.radar \{[^}]*\}", radar, text, count=1)
+    text, m = re.subn(r"\* \{ font-family: [^}]*\}", f"* {{ font-family: {FONT}; }}", text, count=1)
+    if n != 1 or m != 1:
+        raise ValueError("radar or font rule not found")
+    return text
+
+
 def process(text, totals):
     text, n = COUNTER.subn("", text)
     if n != 2:
         raise ValueError(f"expected 2 counters, found {n}")
     if text.count(PIE_OPEN) != 1:
         raise ValueError(f"expected 1 language pie, found {text.count(PIE_OPEN)}")
-    return replace_group(text, text.index(PIE_OPEN), totals)
+    return recolor(replace_group(text, text.index(PIE_OPEN), totals))
 
 
 # The workflow always processes freshly generated files, so any mismatch means the markup changed upstream.

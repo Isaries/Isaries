@@ -81,7 +81,7 @@ GPA 4.01 / 4.3 · Department rank 2 of 14 · Academic Achievement Award · NTNU 
 ## GitHub Activity
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./profile-3d-contrib/profile-night-rainbow.svg" />
+  <source media="(prefers-color-scheme: dark)" srcset="./profile-3d-contrib/profile-night-green.svg" />
   <img src="./profile-3d-contrib/profile-green-animate.svg" alt="3D contribution graph" width="100%" />
 </picture>
 
@@ -113,7 +113,7 @@ GPA 4.01 / 4.3 · Department rank 2 of 14 · Academic Achievement Award · NTNU 
 
 *Sole developer and operator on the university side for NTNU's deployment of UC Berkeley's WISE science-learning platform, which serves secondary-school science classes in Taiwan. (Private repos under [WISE-NTNU-Community](https://github.com/WISE-NTNU-Community).)*
 
-Took over the platform in July 2026 and, over 41 active days, brought 15 repositories under version control, built 3 CI/CD pipelines, and built an administration dashboard with 953 backend and 446 frontend tests. Problems found along the way that also affected upstream were fixed at the source: 13 pull requests reviewed and merged by Berkeley's maintainers, including administrator-only enforcement for user and account management [![#322](https://img.shields.io/github/pulls/detail/state/WISE-Community/WISE-API/322?label=%23322&style=flat-square)](https://github.com/WISE-Community/WISE-API/pull/322), a run-ownership check on batch group password resets [![#325](https://img.shields.io/github/pulls/detail/state/WISE-Community/WISE-API/325?label=%23325&style=flat-square)](https://github.com/WISE-Community/WISE-API/pull/325), a check that a student belongs to the run before their password can be changed [![#332](https://img.shields.io/github/pulls/detail/state/WISE-Community/WISE-API/332?label=%23332&style=flat-square)](https://github.com/WISE-Community/WISE-API/pull/332), and atomic project saves that prevent corrupted project files under rapid editing [![#358](https://img.shields.io/github/pulls/detail/state/WISE-Community/WISE-API/358?label=%23358&style=flat-square)](https://github.com/WISE-Community/WISE-API/pull/358).
+Took over the platform in July 2026 and, over 41 active days, brought 15 repositories under version control, built 3 CI/CD pipelines, and built an administration dashboard with 953 backend and 446 frontend tests. Problems found along the way that also affected upstream were fixed at the source: 13 pull requests reviewed and merged by Berkeley's maintainers, including administrator-only enforcement for user and account management ([#322](https://github.com/WISE-Community/WISE-API/pull/322)), a run-ownership check on batch group password resets ([#325](https://github.com/WISE-Community/WISE-API/pull/325)), a check that a student belongs to the run before their password can be changed ([#332](https://github.com/WISE-Community/WISE-API/pull/332)), and atomic project saves that prevent corrupted project files under rapid editing ([#358](https://github.com/WISE-Community/WISE-API/pull/358)).
 
 **Stack:** Java · Spring Boot · Angular · FastAPI · Next.js · PostgreSQL · MySQL · Docker · GitHub Actions
 

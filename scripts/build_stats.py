@@ -18,6 +18,8 @@ from collections import defaultdict
 from html import escape
 from pathlib import Path
 
+from palette import FONT, PALETTES
+
 YEARS_QUERY = "query($login:String!){user(login:$login){contributionsCollection{contributionYears}}}"
 AUTHORED_QUERY = """query($login:String!,$after:String){user(login:$login){
   pullRequests(states:MERGED,first:100,after:$after){pageInfo{hasNextPage endCursor} nodes{id}}}}"""
@@ -32,10 +34,8 @@ query($login:String!,$from:DateTime!,$to:DateTime!){user(login:$login){contribut
     repository{nameWithOwner languages(first:100){edges{size node{name color}}}}
   }}}}"""
 
-THEMES = {
-    "dark": dict(bg="#0d1117", border="#2e343b", title="#0366d6", text="#77909c", strong="#c9d1d9"),
-    "light": dict(bg="#ffffff", border="#e4e2e2", title="#0366d6", text="#586069", strong="#24292f"),
-}
+THEMES = {theme: dict(bg=p["bg"], border=p["border"], title=p["accent"], text=p["muted"], strong=p["fg"])
+          for theme, p in PALETTES.items()}
 ROWS = 6
 ROW_H = 22
 OTHER_COLOR = "#8b949e"
@@ -147,7 +147,7 @@ def render(rows, c):
         slices.append(f'<path d="{arc(262, 120, 55, 33, a, a1)}" fill="{color}" stroke="{c["bg"]}" stroke-width="2"/>')
         a = a1
     return f'''<svg xmlns="http://www.w3.org/2000/svg" width="340" height="200" viewBox="0 0 340 200" role="img" aria-label="Languages by commit, weighted by each repository's language mix">
-<style>*{{font-family:'Segoe UI',Ubuntu,"Helvetica Neue",Sans-Serif}}</style>
+<style>*{{font-family:{FONT}}}</style>
 <rect x="1" y="1" rx="5" ry="5" width="338" height="198" fill="{c["bg"]}" stroke="{c["border"]}"/>
 <text x="30" y="40" style="font-size:22px;fill:{c["title"]}">Languages by Commit</text>
 {"".join(legend)}

@@ -1,15 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="850" viewBox="0 0 1280 850"><style>* { font-family: "Ubuntu", "Helvetica", "Arial", sans-serif; }
-.fill-fg { fill: #00000f; }
-.stroke-fg { stroke: #00000f; }
+<svg xmlns="http://www.w3.org/2000/svg" width="1280" height="850" viewBox="0 0 1280 850"><style>* { font-family: -apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans",Helvetica,Arial,sans-serif; }
+.fill-fg { fill: #1f2328; }
+.stroke-fg { stroke: #1f2328; }
 .fill-bg { fill: #ffffff; }
 .stroke-bg { stroke: #ffffff; }
-.fill-strong { fill: #111133; }
-.fill-weak { fill: gray; }
-.stroke-weak { stroke: gray; }
+.fill-strong { fill: #1f2328; }
+.fill-weak { fill: #59636e; }
+.stroke-weak { stroke: #59636e; }
 .radar {
 stroke-width: 4px;
-stroke: #47a042;
-fill: #47a042;
+stroke: #40c463;
+fill: #40c463;
 fill-opacity: 0.5;
 }
 .cont-top-bg-0 { fill: #f8f8f8; }
