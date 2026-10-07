@@ -8,8 +8,8 @@
 .stroke-weak { stroke: #59636e; }
 .radar {
 stroke-width: 4px;
-stroke: #40c463;
-fill: #40c463;
+stroke: #6f8aa0;
+fill: #6f8aa0;
 fill-opacity: 0.5;
 }
 .cont-top-p0-0 { fill: rgb(239, 239, 239); }

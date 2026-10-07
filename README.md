@@ -1,16 +1,16 @@
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://capsule-render.vercel.app/api?type=waving&height=200&color=0:0d1117%2C100:1f6feb&text=Chen-Wei%20Huang&fontColor=ffffff&fontSize=48&fontAlignY=36&desc=Where%20education%20meets%20infrastructure&descSize=18&descAlignY=58" />
-  <img src="https://capsule-render.vercel.app/api?type=waving&height=200&color=0:0969da,100:54aeff&text=Chen-Wei%20Huang&fontColor=ffffff&fontSize=48&fontAlignY=36&desc=Where%20education%20meets%20infrastructure&descSize=18&descAlignY=58" alt="Chen-Wei Huang: where education meets infrastructure" width="100%" />
+  <source media="(prefers-color-scheme: dark)" srcset="https://capsule-render.vercel.app/api?type=waving&height=200&color=0:0d1117%2C100:56708a&text=Chen-Wei%20Huang&fontColor=ffffff&fontSize=48&fontAlignY=36&desc=Where%20education%20meets%20infrastructure&descSize=18&descAlignY=58" />
+  <img src="https://capsule-render.vercel.app/api?type=waving&height=200&color=0:4a6378,100:8299ad&text=Chen-Wei%20Huang&fontColor=ffffff&fontSize=48&fontAlignY=36&desc=Where%20education%20meets%20infrastructure&descSize=18&descAlignY=58" alt="Chen-Wei Huang: where education meets infrastructure" width="100%" />
 </picture>
 
 <h1 align="center">Hi, I'm Leo (Chen-Wei Huang)</h1>
 
 <p align="center">
-  <a href="mailto:cw.huang.work@gmail.com"><img src="https://img.shields.io/badge/Email-cw.huang.work%40gmail.com-1f6feb?style=flat-square&logo=gmail&logoColor=white" alt="Email" /></a>
-  <img src="https://img.shields.io/badge/Taipei-Taiwan-30363d?style=flat-square" alt="Taipei, Taiwan" />
-  <a href="https://www.upls.ntnu.edu.tw/"><img src="https://img.shields.io/badge/NTNU-Learning%20Sciences%20%2B%20CS-30363d?style=flat-square" alt="NTNU, Learning Sciences and Computer Science" /></a>
-  <img src="https://img.shields.io/badge/Graduating-2027-30363d?style=flat-square" alt="Graduating 2027" />
-  <img src="https://img.shields.io/badge/ICCE%202026-first%20author-2ea44f?style=flat-square" alt="ICCE 2026 first author" />
+  <a href="mailto:cw.huang.work@gmail.com"><img src="https://img.shields.io/badge/Email-cw.huang.work%40gmail.com-56708a?style=flat-square&logo=gmail&logoColor=white" alt="Email" /></a>
+  <img src="https://img.shields.io/badge/Taipei-Taiwan-4e5560?style=flat-square" alt="Taipei, Taiwan" />
+  <a href="https://www.upls.ntnu.edu.tw/"><img src="https://img.shields.io/badge/NTNU-Learning%20Sciences%20%2B%20CS-4e5560?style=flat-square" alt="NTNU, Learning Sciences and Computer Science" /></a>
+  <img src="https://img.shields.io/badge/Graduating-2027-4e5560?style=flat-square" alt="Graduating 2027" />
+  <img src="https://img.shields.io/badge/ICCE%202026-first%20author-6b8572?style=flat-square" alt="ICCE 2026 first author" />
 </p>
 
 **Software engineer and applied researcher working where education meets infrastructure. I build systems that real classrooms and research groups depend on, and I care about whether they keep working after I hand them over.**
@@ -109,7 +109,7 @@ GPA 4.01 / 4.3 · Department rank 2 of 14 · Academic Achievement Award · NTNU 
 
 ### TWISE: Production Platform Operations
 
-![In production](https://img.shields.io/badge/status-in%20production-2ea44f?style=flat-square) ![Sole developer and operator](https://img.shields.io/badge/role-sole%20developer%20%26%20operator-1f6feb?style=flat-square) ![Private repos](https://img.shields.io/badge/repos-private-6e7681?style=flat-square)
+![In production](https://img.shields.io/badge/status-in%20production-6b8572?style=flat-square) ![Sole developer and operator](https://img.shields.io/badge/role-sole%20developer%20%26%20operator-56708a?style=flat-square) ![Private repos](https://img.shields.io/badge/repos-private-8a8580?style=flat-square)
 
 *Sole developer and operator on the university side for NTNU's deployment of UC Berkeley's WISE science-learning platform, which serves secondary-school science classes in Taiwan. (Private repos under [WISE-NTNU-Community](https://github.com/WISE-NTNU-Community).)*
 
@@ -119,7 +119,7 @@ Took over the platform in July 2026 and, over 41 active days, brought 15 reposit
 
 ### [SMAP](https://github.com/Research-Center-for-Smart-Learning-RCSL/Smart-MultiAgent-Platform): Multi-Agent LLM Platform
 
-![Active development](https://img.shields.io/badge/status-active%20development-d29922?style=flat-square) ![Sole developer](https://img.shields.io/badge/role-sole%20developer-1f6feb?style=flat-square) ![NSTC funded](https://img.shields.io/badge/funding-NSTC-6e7681?style=flat-square)
+![Active development](https://img.shields.io/badge/status-active%20development-9a845a?style=flat-square) ![Sole developer](https://img.shields.io/badge/role-sole%20developer-56708a?style=flat-square) ![NSTC funded](https://img.shields.io/badge/funding-NSTC-8a8580?style=flat-square)
 
 *Platform for an NSTC-funded undergraduate research project. Sole developer; in active development.*
 
@@ -129,7 +129,7 @@ Lets researchers define LLM agents, compose them into workflows, ground them in 
 
 ### [AI Nexus](https://github.com/Research-Center-for-Smart-Learning-RCSL/RCSL-AI-Nexus): Self-Hosted LLM Gateway
 
-![In production](https://img.shields.io/badge/status-in%20production-2ea44f?style=flat-square) ![Sole developer](https://img.shields.io/badge/role-sole%20developer-1f6feb?style=flat-square) ![Lab Mac Studio](https://img.shields.io/badge/host-lab%20Mac%20Studio-6e7681?style=flat-square)
+![In production](https://img.shields.io/badge/status-in%20production-6b8572?style=flat-square) ![Sole developer](https://img.shields.io/badge/role-sole%20developer-56708a?style=flat-square) ![Lab Mac Studio](https://img.shields.io/badge/host-lab%20Mac%20Studio-8a8580?style=flat-square)
 
 *Sole developer. In production on a lab Mac Studio, giving the lab shared AI infrastructure without per-project API keys and model configs.*
 
@@ -229,6 +229,6 @@ Reach me at [cw.huang.work@gmail.com](mailto:cw.huang.work@gmail.com).
 *Last updated: 2026-10-07*
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://capsule-render.vercel.app/api?type=waving&height=100&color=0:1f6feb%2C100:0d1117&section=footer" />
-  <img src="https://capsule-render.vercel.app/api?type=waving&height=100&color=0:54aeff,100:0969da&section=footer" alt="" width="100%" />
+  <source media="(prefers-color-scheme: dark)" srcset="https://capsule-render.vercel.app/api?type=waving&height=100&color=0:56708a%2C100:0d1117&section=footer" />
+  <img src="https://capsule-render.vercel.app/api?type=waving&height=100&color=0:8299ad,100:4a6378&section=footer" alt="" width="100%" />
 </picture>

@@ -15,10 +15,10 @@ from palette import FONT, PALETTES
 
 PUBLIC_REPOS = re.compile(r">\d+ Public Repos?<")
 FONT_RULE = re.compile(r"font-family:[^}]*")
-# Output folder -> (palette, {stock theme color: palette key}). The chart green is left as is.
+# Output folder -> (palette, {stock theme color: palette key}).
 THEMES = {
-    "github": ("light", {"#e4e2e2": "border", "#0366d6": "accent", "#586069": "muted"}),
-    "github_dark": ("dark", {"#2e343b": "border", "#0366d6": "accent", "#77909c": "muted"}),
+    "github": ("light", {"#e4e2e2": "border", "#0366d6": "accent", "#586069": "muted", "#40c463": "chart"}),
+    "github_dark": ("dark", {"#2e343b": "border", "#0366d6": "accent", "#77909c": "muted", "#40c463": "chart"}),
 }
 
 
@@ -27,7 +27,7 @@ def recolor(text, theme):
     for stock, key in mapping.items():
         text, n = re.subn(re.escape(stock), PALETTES[name][key], text, flags=re.IGNORECASE)
         # Every card draws a border and a title, so a missing stock color means the theme changed upstream.
-        if n == 0 and key != "muted":
+        if n == 0 and key in ("border", "accent"):
             raise ValueError(f"stock color {stock} not found")
     text, n = FONT_RULE.subn(f"font-family: {FONT}\n        ", text, count=1)
     if n != 1:

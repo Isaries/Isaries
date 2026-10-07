@@ -2,8 +2,8 @@
 
 Removed: the star and fork counters (always 0 here) and the language pie, which credits every commit
 to a repository's primary language (scripts/build_stats.py renders the weighted card instead). The pie's
-corner is filled with all-time totals from build_stats.py's stats.json. Each theme's background, text and
-radar colors and its font are replaced with scripts/palette.py's, so the graph sits on the page background.
+corner is filled with all-time totals from build_stats.py's stats.json. Each theme's background, text, radar
+and cube colors and its font are replaced with scripts/palette.py's, so the graph sits on the page background.
 
 Usage: python postprocess_3d.py <svg_dir> <stats.json>
 """
@@ -12,7 +12,7 @@ import re
 import sys
 from pathlib import Path
 
-from palette import FONT, GREEN, PALETTES
+from palette import FONT, PALETTES
 
 # Icon <g> at scale(2) followed by its number; the generator emits exactly one each for stars and forks.
 COUNTER = re.compile(
@@ -69,11 +69,29 @@ def recolor(text):
         text, n = re.subn(rf"\.{cls} \{{ {prop}: [^;]+; \}}", f".{cls} {{ {prop}: {color}; }}", text, count=1)
         if n != 1:
             raise ValueError(f"{cls} rule not found")
-    radar = f".radar {{\nstroke-width: 4px;\nstroke: {GREEN};\nfill: {GREEN};\nfill-opacity: 0.5;\n}}"
+    radar = f".radar {{\nstroke-width: 4px;\nstroke: {p['chart']};\nfill: {p['chart']};\nfill-opacity: 0.5;\n}}"
     text, n = re.subn(r"\.radar \{[^}]*\}", radar, text, count=1)
     text, m = re.subn(r"\* \{ font-family: [^}]*\}", f"* {{ font-family: {FONT}; }}", text, count=1)
     if n != 1 or m != 1:
         raise ValueError("radar or font rule not found")
+    return recolor_cubes(text, p["levels"])
+
+
+def shade(color, factor):
+    return "#" + "".join(f"{round(int(color[i:i + 2], 16) * factor):02x}" for i in (1, 3, 5))
+
+
+def recolor_cubes(text, levels):
+    # Themes with per-cube animations (rainbow, season) have no level classes and keep their own colors.
+    # Side faces are darkened by the same ratios the generator uses, so the cubes keep their shading.
+    total = 0
+    for i, top in enumerate(levels):
+        for face, factor in (("top", 1), ("left", 0.84), ("right", 0.7)):
+            text, n = re.subn(rf"\.cont-{face}-{i} \{{ fill: [^;]+; \}}", f".cont-{face}-{i} {{ fill: {shade(top, factor)}; }}",
+                              text, count=1)
+            total += n
+    if total not in (0, 3 * len(levels)):
+        raise ValueError(f"expected 0 or {3 * len(levels)} cube color rules, found {total}")
     return text
 
 

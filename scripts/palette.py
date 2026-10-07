@@ -2,10 +2,13 @@
 own background instead of each tool's stock theme. assets/hero-*.svg use the same values.
 """
 FONT = '-apple-system,BlinkMacSystemFont,"Segoe UI","Noto Sans",Helvetica,Arial,sans-serif'
-# Matches the green of the summary cards' charts, which the card action does not let us change.
-GREEN = "#40c463"
 
+# chart: card bars and areas and the radar. levels: top faces of the 3D graph's cubes, from no
+# contributions to the most. Both are a desaturated (Morandi) slate blue; the README's badges and banner
+# use the same hues.
 PALETTES = {
-    "dark": dict(bg="#0d1117", border="#30363d", fg="#e6edf3", muted="#8b949e", accent="#58a6ff"),
-    "light": dict(bg="#ffffff", border="#d0d7de", fg="#1f2328", muted="#59636e", accent="#0969da"),
+    "dark": dict(bg="#0d1117", border="#30363d", fg="#e6edf3", muted="#8b949e", accent="#58a6ff",
+                 chart="#7d98b0", levels=("#2d333b", "#3a4a5c", "#56708a", "#7d98b0", "#a9bfd0")),
+    "light": dict(bg="#ffffff", border="#d0d7de", fg="#1f2328", muted="#59636e", accent="#0969da",
+                  chart="#6f8aa0", levels=("#eef0f2", "#c9d4dd", "#9fb1c1", "#6f8aa0", "#4a6378")),
 }
