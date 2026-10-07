@@ -1,5 +1,5 @@
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://capsule-render.vercel.app/api?type=waving&height=200&color=0:0d1117,100:1f6feb&text=Chen-Wei%20Huang&fontColor=ffffff&fontSize=48&fontAlignY=36&desc=Where%20education%20meets%20infrastructure&descSize=18&descAlignY=58" />
+  <source media="(prefers-color-scheme: dark)" srcset="https://capsule-render.vercel.app/api?type=waving&height=200&color=0:0d1117%2C100:1f6feb&text=Chen-Wei%20Huang&fontColor=ffffff&fontSize=48&fontAlignY=36&desc=Where%20education%20meets%20infrastructure&descSize=18&descAlignY=58" />
   <img src="https://capsule-render.vercel.app/api?type=waving&height=200&color=0:0969da,100:54aeff&text=Chen-Wei%20Huang&fontColor=ffffff&fontSize=48&fontAlignY=36&desc=Where%20education%20meets%20infrastructure&descSize=18&descAlignY=58" alt="Chen-Wei Huang: where education meets infrastructure" width="100%" />
 </picture>
 
@@ -209,7 +209,7 @@ Compares three LLM tutoring agents that teach English grammar on a robot-and-tab
 
 <p align="center">
   <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="https://skillicons.dev/icons?i=py,ts,rust,java,c,fastapi,flask,spring,vue,react,nextjs,angular,tailwind,vite,postgres,mysql,redis,sqlite,pytorch,docker,nginx,cloudflare,githubactions,bash&perline=12&theme=dark" />
+    <source media="(prefers-color-scheme: dark)" srcset="https://skillicons.dev/icons?i=py%2Cts%2Crust%2Cjava%2Cc%2Cfastapi%2Cflask%2Cspring%2Cvue%2Creact%2Cnextjs%2Cangular%2Ctailwind%2Cvite%2Cpostgres%2Cmysql%2Credis%2Csqlite%2Cpytorch%2Cdocker%2Cnginx%2Ccloudflare%2Cgithubactions%2Cbash&perline=12&theme=dark" />
     <img src="https://skillicons.dev/icons?i=py,ts,rust,java,c,fastapi,flask,spring,vue,react,nextjs,angular,tailwind,vite,postgres,mysql,redis,sqlite,pytorch,docker,nginx,cloudflare,githubactions,bash&perline=12&theme=light" alt="Python, TypeScript, Rust, Java, C, FastAPI, Flask, Spring, Vue, React, Next.js, Angular, Tailwind, Vite, PostgreSQL, MySQL, Redis, SQLite, PyTorch, Docker, Nginx, Cloudflare, GitHub Actions, Bash" />
   </picture>
 </p>
@@ -234,6 +234,6 @@ Reach me at [cw.huang.work@gmail.com](mailto:cw.huang.work@gmail.com).
 *Last updated: 2026-10-07*
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="https://capsule-render.vercel.app/api?type=waving&height=100&color=0:1f6feb,100:0d1117&section=footer" />
+  <source media="(prefers-color-scheme: dark)" srcset="https://capsule-render.vercel.app/api?type=waving&height=100&color=0:1f6feb%2C100:0d1117&section=footer" />
   <img src="https://capsule-render.vercel.app/api?type=waving&height=100&color=0:54aeff,100:0969da&section=footer" alt="" width="100%" />
 </picture>
