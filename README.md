@@ -30,6 +30,11 @@ Taipei, Taiwan · NTNU, [Learning Sciences](https://www.upls.ntnu.edu.tw/) (cogn
 GPA 4.01 / 4.3 · Department rank 2 of 14 · Academic Achievement Award · NTNU Programming Project Competition, Project Distinction Award (x2)  
 [cw.huang.work@gmail.com](mailto:cw.huang.work@gmail.com) · Mandarin (native) · English
 
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="./profile-3d-contrib/profile-night-green.svg" />
+  <img src="./profile-3d-contrib/profile-green-animate.svg" alt="3D contribution graph" width="100%" />
+</picture>
+
 ---
 
 ## Highlights
@@ -99,11 +104,6 @@ GPA 4.01 / 4.3 · Department rank 2 of 14 · Academic Achievement Award · NTNU 
 ---
 
 ## GitHub Activity
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./profile-3d-contrib/profile-night-green.svg" />
-  <img src="./profile-3d-contrib/profile-green-animate.svg" alt="3D contribution graph" width="100%" />
-</picture>
 
 <p align="center">
   <picture>
