@@ -26,7 +26,7 @@ Most of my projects started from a concrete need: a live classroom platform that
   </picture>
 </p>
 
-<br />
+---
 
 Taipei, Taiwan · NTNU, [Learning Sciences](https://www.upls.ntnu.edu.tw/) (cognitive science and HCI applied to how people learn), double major in Computer Science · Senior, graduating 2027  
 GPA 4.01 / 4.3 · Department rank 2 of 14 · Academic Achievement Award · NTNU Programming Project Competition, Project Distinction Award (x2)  
