@@ -98,6 +98,33 @@ GPA 4.01 / 4.3 · Department rank 2 of 14 · Academic Achievement Award · NTNU 
 
 ---
 
+## GitHub Activity
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="./profile-3d-contrib/profile-night-green.svg" />
+  <img src="./profile-3d-contrib/profile-green-animate.svg" alt="3D contribution graph" width="100%" />
+</picture>
+
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="./profile-summary-card-output/github_dark/0-profile-details.svg" />
+    <img src="./profile-summary-card-output/github/0-profile-details.svg" alt="Profile details and contribution history" width="100%" />
+  </picture>
+</p>
+<p align="center">
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="./profile-languages/languages-dark.svg" />
+    <img src="./profile-languages/languages-light.svg" alt="Languages by commit, weighted by each repository's language mix" width="49%" />
+  </picture>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="./profile-summary-card-output/github_dark/4-productive-time.svg" />
+    <img src="./profile-summary-card-output/github/4-productive-time.svg" alt="Productive time" width="49%" />
+  </picture>
+</p>
+<p align="center"><sub>Languages: each repository's commits are split by that repository's language mix, across personal, organization and private repositories.</sub></p>
+
+---
+
 ## Featured Work
 
 ### TWISE: Production Platform Operations
@@ -190,33 +217,6 @@ Compares three LLM tutoring agents that teach English grammar on a robot-and-tab
 | 2023 – 2024 | **Digital tutor**, MOE Digital Companion program |
 
 </details>
-
----
-
-## GitHub Activity
-
-<picture>
-  <source media="(prefers-color-scheme: dark)" srcset="./profile-3d-contrib/profile-night-green.svg" />
-  <img src="./profile-3d-contrib/profile-green-animate.svg" alt="3D contribution graph" width="100%" />
-</picture>
-
-<p align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="./profile-summary-card-output/github_dark/0-profile-details.svg" />
-    <img src="./profile-summary-card-output/github/0-profile-details.svg" alt="Profile details and contribution history" width="100%" />
-  </picture>
-</p>
-<p align="center">
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="./profile-languages/languages-dark.svg" />
-    <img src="./profile-languages/languages-light.svg" alt="Languages by commit, weighted by each repository's language mix" width="49%" />
-  </picture>
-  <picture>
-    <source media="(prefers-color-scheme: dark)" srcset="./profile-summary-card-output/github_dark/4-productive-time.svg" />
-    <img src="./profile-summary-card-output/github/4-productive-time.svg" alt="Productive time" width="49%" />
-  </picture>
-</p>
-<p align="center"><sub>Languages: each repository's commits are split by that repository's language mix, across personal, organization and private repositories.</sub></p>
 
 ---
 
