@@ -180,7 +180,7 @@ LLM inference gateway with an OpenAI-compatible API, a management control plane,
 <details>
 <summary><strong>Collaboration</strong></summary>
 
-- **WISE upstream**: authored 13 pull requests that Berkeley's maintainers reviewed and merged across two repositories; disclosed security fixes in the pull requests after confirming neither repository had a private reporting channel
+- **WISE upstream**: authored 13 pull requests that Berkeley's maintainers reviewed and merged across two repositories
 - **Fishbone Cave**: worked inside a colleague's project structure and agreed feature boundaries with the owner during a four-day sprint
 - **NOJ**: contributed to a multi-developer production codebase used by CS courses
 
