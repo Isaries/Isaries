@@ -13,6 +13,7 @@ import json
 import math
 import os
 import sys
+import textwrap
 import urllib.request
 from collections import defaultdict
 from html import escape
@@ -37,11 +38,12 @@ query($login:String!,$from:DateTime!,$to:DateTime!){user(login:$login){contribut
 THEMES = {theme: dict(bg=p["bg"], border=p["border"], title=p["accent"], text=p["muted"], strong=p["fg"])
           for theme, p in PALETTES.items()}
 ROWS = 6
-ROW_H = 21
+ROW_H = 20
 # Build, container and template files that linguist counts as languages. Their byte share says nothing
 # about which languages were written, and they would crowd the "Other" list.
 EXCLUDED = {"Dockerfile", "Makefile", "Batchfile", "HCL", "Mako", "Procfile", "Nix", "Just"}
-FOOTER_CHARS = 46
+FOOTER_CHARS = 52
+FOOTER_LINES = 2
 
 
 def gql(query, **variables):
@@ -126,22 +128,23 @@ def top_rows(weights):
         rows.append((name, w / total, SERIES[ROWS - 1]))
     elif rest > 0:
         rows.append(("Other", rest, SERIES_OTHER))
-        others = [name for name, _ in ranked[ROWS - 1:]]
+        others = [(name, w / total) for name, w in ranked[ROWS - 1:]]
     return rows, others
 
 
-def footer_text(others):
-    """Name as many "Other" languages as fit on one line under the chart, then count the rest."""
-    def line(shown):
-        rest = len(others) - len(shown)
-        return ("Other: " + ", ".join(shown)).rstrip() + (f" +{rest}" if rest else "")
-
-    shown = []
-    for name in others:
-        if len(line(shown + [name])) > FOOTER_CHARS:
-            break
-        shown.append(name)
-    return line(shown)
+def footer_lines(others):
+    """List as many "Other" languages with their shares as fit under the chart, then count the rest."""
+    if not others:
+        return []
+    # A no-break space keeps each name on the same line as its share; textwrap only splits on ASCII spaces.
+    items = [f"{name} {share:.1%}" if share >= 0.0005 else f"{name} <0.1%" for name, share in others]
+    for k in range(len(items), -1, -1):
+        rest = len(items) - k
+        text = " ".join(filter(None, ["Other:", ", ".join(items[:k]), f"+{rest}" if rest else ""]))
+        lines = textwrap.wrap(text, FOOTER_CHARS, break_long_words=False)
+        if len(lines) <= FOOTER_LINES:
+            return lines
+    return []
 
 
 def arc(cx, cy, r_out, r_in, a0, a1):
@@ -156,7 +159,7 @@ def arc(cx, cy, r_out, r_in, a0, a1):
 def render(rows, others, c):
     legend, slices, a = [], [], 0.0
     for i, (name, share, color) in enumerate(rows):
-        y = 46 + i * ROW_H
+        y = 44 + i * ROW_H
         legend.append(
             f'<rect x="40" y="{y:.1f}" width="14" height="14" fill="{color}" stroke="{c["bg"]}"/>'
             f'<text x="62" y="{y + 12:.1f}" style="fill:{c["text"]};font-size:14px">{escape(name)}</text>'
@@ -164,10 +167,10 @@ def render(rows, others, c):
         )
         # A lone 100% slice would draw a zero-length arc, so cap it just short of a full turn.
         a1 = min(a + share * 2 * math.pi, 2 * math.pi - 1e-4)
-        slices.append(f'<path d="{arc(262, 120, 55, 33, a, a1)}" fill="{color}" stroke="{c["bg"]}" stroke-width="2"/>')
+        slices.append(f'<path d="{arc(262, 101, 55, 33, a, a1)}" fill="{color}" stroke="{c["bg"]}" stroke-width="2"/>')
         a = a1
-    footer = (f'<text x="30" y="188" style="fill:{c["text"]};font-size:11px">{escape(footer_text(others))}</text>'
-              if others else "")
+    footer = "".join(f'<text x="30" y="{176 + i * 14}" style="fill:{c["text"]};font-size:11px">{escape(line)}</text>'
+                     for i, line in enumerate(footer_lines(others)))
     return f'''<svg xmlns="http://www.w3.org/2000/svg" width="340" height="200" viewBox="0 0 340 200" role="img" aria-label="Languages by commit, weighted by each repository's language mix">
 <style>*{{font-family:{FONT}}}</style>
 <rect x="1" y="1" rx="5" ry="5" width="338" height="198" fill="{c["bg"]}" stroke="{c["border"]}"/>
