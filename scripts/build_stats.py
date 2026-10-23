@@ -42,7 +42,7 @@ ROW_H = 20
 # Build, container and template files that linguist counts as languages. Their byte share says nothing
 # about which languages were written, and they would crowd the "Other" list.
 EXCLUDED = {"Dockerfile", "Makefile", "Batchfile", "HCL", "Mako", "Procfile", "Nix", "Just"}
-FOOTER_CHARS = 52
+FOOTER_CHARS = 58
 FOOTER_LINES = 2
 
 
@@ -169,7 +169,7 @@ def render(rows, others, c):
         a1 = min(a + share * 2 * math.pi, 2 * math.pi - 1e-4)
         slices.append(f'<path d="{arc(262, 101, 55, 33, a, a1)}" fill="{color}" stroke="{c["bg"]}" stroke-width="2"/>')
         a = a1
-    footer = "".join(f'<text x="30" y="{176 + i * 14}" style="fill:{c["text"]};font-size:11px">{escape(line)}</text>'
+    footer = "".join(f'<text x="30" y="{177 + i * 13}" style="fill:{c["text"]};font-size:10px">{escape(line)}</text>'
                      for i, line in enumerate(footer_lines(others)))
     return f'''<svg xmlns="http://www.w3.org/2000/svg" width="340" height="200" viewBox="0 0 340 200" role="img" aria-label="Languages by commit, weighted by each repository's language mix">
 <style>*{{font-family:{FONT}}}</style>
