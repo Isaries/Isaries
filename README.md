@@ -47,8 +47,8 @@ GPA 4.01 / 4.3 · Department rank 2 of 14 · Academic Achievement Award · NTNU 
 
 <table>
   <tr>
-    <td align="center" width="150"><h3>13</h3>upstream PRs</td>
-    <td><b>13 pull requests merged upstream</b> into UC Berkeley's <a href="https://github.com/WISE-Community">WISE</a> platform (11 in WISE-API, 2 in WISE-Client): 10 security or user-facing behavior fixes and 3 test follow-ups, shipped in the project's regular releases</td>
+    <td align="center" width="150"><h3>15</h3>upstream PRs</td>
+    <td><b>15 pull requests merged upstream</b> into UC Berkeley's <a href="https://github.com/WISE-Community">WISE</a> platform (11 in WISE-API, 4 in WISE-Client): 12 security or user-facing behavior fixes and 3 test follow-ups, shipped in the project's regular releases</td>
   </tr>
   <tr>
     <td align="center"><h3>ICCE 2026</h3>first author</td>
@@ -139,7 +139,7 @@ GPA 4.01 / 4.3 · Department rank 2 of 14 · Academic Achievement Award · NTNU 
 
 *Sole developer and operator on the university side for NTNU's deployment of UC Berkeley's WISE science-learning platform, which serves secondary-school science classes in Taiwan. (Private repos under [WISE-NTNU-Community](https://github.com/WISE-NTNU-Community).)*
 
-Took over the platform in July 2026 and, over 41 active days, brought 15 repositories under version control, built 3 CI/CD pipelines, and built an administration dashboard with 953 backend and 446 frontend tests. Problems found along the way that also affected upstream were fixed at the source: 13 pull requests reviewed and merged by Berkeley's maintainers, including administrator-only enforcement for user and account management ([#322](https://github.com/WISE-Community/WISE-API/pull/322)), a run-ownership check on batch group password resets ([#325](https://github.com/WISE-Community/WISE-API/pull/325)), a check that a student belongs to the run before their password can be changed ([#332](https://github.com/WISE-Community/WISE-API/pull/332)), and atomic project saves that prevent corrupted project files under rapid editing ([#358](https://github.com/WISE-Community/WISE-API/pull/358)).
+Took over the platform in July 2026 and, over 41 active days, brought 15 repositories under version control, built 3 CI/CD pipelines, and built an administration dashboard with 953 backend and 446 frontend tests. Problems found along the way that also affected upstream were fixed at the source: 15 pull requests reviewed and merged by Berkeley's maintainers, including administrator-only enforcement for user and account management ([#322](https://github.com/WISE-Community/WISE-API/pull/322)), a run-ownership check on batch group password resets ([#325](https://github.com/WISE-Community/WISE-API/pull/325)), a check that a student belongs to the run before their password can be changed ([#332](https://github.com/WISE-Community/WISE-API/pull/332)), and atomic project saves that prevent corrupted project files under rapid editing ([#358](https://github.com/WISE-Community/WISE-API/pull/358)).
 
 **Stack:** Java · Spring Boot · Angular · FastAPI · Next.js · PostgreSQL · MySQL · Docker · GitHub Actions
 
@@ -180,7 +180,7 @@ LLM inference gateway with an OpenAI-compatible API, a management control plane,
 <details>
 <summary><strong>Collaboration</strong></summary>
 
-- **WISE upstream**: authored 13 pull requests that Berkeley's maintainers reviewed and merged across two repositories
+- **WISE upstream**: authored 15 pull requests that Berkeley's maintainers reviewed and merged across two repositories
 - **Fishbone Cave**: worked inside a colleague's project structure and agreed feature boundaries with the owner during a four-day sprint
 - **NOJ**: contributed to a multi-developer production codebase used by CS courses
 
