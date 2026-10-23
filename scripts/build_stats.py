@@ -37,7 +37,11 @@ query($login:String!,$from:DateTime!,$to:DateTime!){user(login:$login){contribut
 THEMES = {theme: dict(bg=p["bg"], border=p["border"], title=p["accent"], text=p["muted"], strong=p["fg"])
           for theme, p in PALETTES.items()}
 ROWS = 6
-ROW_H = 22
+ROW_H = 21
+# Build, container and template files that linguist counts as languages. Their byte share says nothing
+# about which languages were written, and they would crowd the "Other" list.
+EXCLUDED = {"Dockerfile", "Makefile", "Batchfile", "HCL", "Mako", "Procfile", "Nix", "Just"}
+FOOTER_CHARS = 46
 
 
 def gql(query, **variables):
@@ -99,7 +103,9 @@ def collect(login):
             n = item["contributions"]["totalCount"]
             repos.add(repo["nameWithOwner"])
             commits += n
-            edges = repo["languages"]["edges"]
+            edges = [e for e in repo["languages"]["edges"] if e["node"]["name"] not in EXCLUDED]
+            if not edges:
+                continue
             total = sum(e["size"] for e in edges)
             for e in edges:
                 weights[e["node"]["name"]] += n * e["size"] / total
@@ -114,12 +120,28 @@ def top_rows(weights):
     ranked = sorted(weights.items(), key=lambda kv: kv[1], reverse=True)
     rows = [(name, w / total, SERIES[i]) for i, (name, w) in enumerate(ranked[: ROWS - 1])]
     rest = sum(w for _, w in ranked[ROWS - 1:]) / total
+    others = []
     if len(ranked) == ROWS:
         name, w = ranked[-1]
         rows.append((name, w / total, SERIES[ROWS - 1]))
     elif rest > 0:
         rows.append(("Other", rest, SERIES_OTHER))
-    return rows
+        others = [name for name, _ in ranked[ROWS - 1:]]
+    return rows, others
+
+
+def footer_text(others):
+    """Name as many "Other" languages as fit on one line under the chart, then count the rest."""
+    def line(shown):
+        rest = len(others) - len(shown)
+        return ("Other: " + ", ".join(shown)).rstrip() + (f" +{rest}" if rest else "")
+
+    shown = []
+    for name in others:
+        if len(line(shown + [name])) > FOOTER_CHARS:
+            break
+        shown.append(name)
+    return line(shown)
 
 
 def arc(cx, cy, r_out, r_in, a0, a1):
@@ -131,10 +153,10 @@ def arc(cx, cy, r_out, r_in, a0, a1):
             f"L{x2:.2f} {y2:.2f}A{r_in} {r_in} 0 {large} 0 {x3:.2f} {y3:.2f}Z")
 
 
-def render(rows, c):
+def render(rows, others, c):
     legend, slices, a = [], [], 0.0
     for i, (name, share, color) in enumerate(rows):
-        y = 56 + i * ROW_H
+        y = 46 + i * ROW_H
         legend.append(
             f'<rect x="40" y="{y:.1f}" width="14" height="14" fill="{color}" stroke="{c["bg"]}"/>'
             f'<text x="62" y="{y + 12:.1f}" style="fill:{c["text"]};font-size:14px">{escape(name)}</text>'
@@ -144,12 +166,15 @@ def render(rows, c):
         a1 = min(a + share * 2 * math.pi, 2 * math.pi - 1e-4)
         slices.append(f'<path d="{arc(262, 120, 55, 33, a, a1)}" fill="{color}" stroke="{c["bg"]}" stroke-width="2"/>')
         a = a1
+    footer = (f'<text x="30" y="188" style="fill:{c["text"]};font-size:11px">{escape(footer_text(others))}</text>'
+              if others else "")
     return f'''<svg xmlns="http://www.w3.org/2000/svg" width="340" height="200" viewBox="0 0 340 200" role="img" aria-label="Languages by commit, weighted by each repository's language mix">
 <style>*{{font-family:{FONT}}}</style>
 <rect x="1" y="1" rx="5" ry="5" width="338" height="198" fill="{c["bg"]}" stroke="{c["border"]}"/>
-<text x="30" y="40" style="font-size:22px;fill:{c["title"]}">Languages by Commit</text>
+<text x="30" y="34" style="font-size:22px;fill:{c["title"]}">Languages by Commit</text>
 {"".join(legend)}
 {"".join(slices)}
+{footer}
 </svg>
 '''
 
@@ -159,13 +184,13 @@ def main():
     weights, stats = collect(login)
     if not weights:
         sys.exit("no commit contributions with language data")
-    rows = top_rows(weights)
+    rows, others = top_rows(weights)
     print(" ".join(f"{k}={v}" for k, v in stats.items()))
     total = sum(weights.values())
     print(", ".join(f"{k} {w / total:.1%}" for k, w in sorted(weights.items(), key=lambda kv: -kv[1])[:10]))
     out.mkdir(parents=True, exist_ok=True)
     for theme, palette in THEMES.items():
-        (out / f"languages-{theme}.svg").write_text(render(rows, palette), encoding="utf-8", newline="\n")
+        (out / f"languages-{theme}.svg").write_text(render(rows, others, palette), encoding="utf-8", newline="\n")
     (out / "stats.json").write_text(json.dumps(stats, indent=2) + "\n", encoding="utf-8", newline="\n")
 
 
