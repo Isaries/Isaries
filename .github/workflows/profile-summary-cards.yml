@@ -19,21 +19,15 @@ jobs:
       - uses: actions/checkout@v5
       # Each run wipes profile-summary-card-output, so the light theme is set
       # aside before the dark run and restored afterwards.
-      - uses: vn7n24fzkq/github-profile-summary-cards@release
+      - uses: ./.github/actions/summary-cards
         with:
-          USERNAME: ${{ github.repository_owner }}
-          BRANCH_NAME: main
-          UTC_OFFSET: 8
-          THEME: github
-          AUTO_PUSH: false
+          theme: github
+          username: ${{ github.repository_owner }}
       - run: mv profile-summary-card-output/github "$RUNNER_TEMP/github"
-      - uses: vn7n24fzkq/github-profile-summary-cards@release
+      - uses: ./.github/actions/summary-cards
         with:
-          USERNAME: ${{ github.repository_owner }}
-          BRANCH_NAME: main
-          UTC_OFFSET: 8
-          THEME: github_dark
-          AUTO_PUSH: false
+          theme: github_dark
+          username: ${{ github.repository_owner }}
       - run: mv "$RUNNER_TEMP/github" profile-summary-card-output/github
       - uses: yoshi389111/github-profile-3d-contrib@latest
         env:

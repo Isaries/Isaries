@@ -1,0 +1,51 @@
+name: Summary cards with retry
+description: Run the card action for one theme, repeating it while any card is missing.
+
+inputs:
+  theme:
+    description: Card theme, which is also the output folder name.
+    required: true
+  username:
+    required: true
+
+runs:
+  using: composite
+  steps:
+    # The action retries a failed API call once and then exits 0 without the card, so completeness is
+    # checked here and the whole run repeated. A repeat re-fetches every card because the action wipes
+    # the output folder first.
+    - uses: vn7n24fzkq/github-profile-summary-cards@release
+      with:
+        USERNAME: ${{ inputs.username }}
+        BRANCH_NAME: main
+        UTC_OFFSET: 8
+        THEME: ${{ inputs.theme }}
+        AUTO_PUSH: false
+    - id: check1
+      shell: bash
+      run: |
+        if python3 scripts/check_cards.py "${{ inputs.theme }}"; then echo ok=true >> "$GITHUB_OUTPUT"; else echo ok=false >> "$GITHUB_OUTPUT"; sleep 30; fi
+    - if: steps.check1.outputs.ok != 'true'
+      uses: vn7n24fzkq/github-profile-summary-cards@release
+      with:
+        USERNAME: ${{ inputs.username }}
+        BRANCH_NAME: main
+        UTC_OFFSET: 8
+        THEME: ${{ inputs.theme }}
+        AUTO_PUSH: false
+    - id: check2
+      if: steps.check1.outputs.ok != 'true'
+      shell: bash
+      run: |
+        if python3 scripts/check_cards.py "${{ inputs.theme }}"; then echo ok=true >> "$GITHUB_OUTPUT"; else echo ok=false >> "$GITHUB_OUTPUT"; sleep 60; fi
+    - if: steps.check1.outputs.ok != 'true' && steps.check2.outputs.ok != 'true'
+      uses: vn7n24fzkq/github-profile-summary-cards@release
+      with:
+        USERNAME: ${{ inputs.username }}
+        BRANCH_NAME: main
+        UTC_OFFSET: 8
+        THEME: ${{ inputs.theme }}
+        AUTO_PUSH: false
+    - if: steps.check1.outputs.ok != 'true' && steps.check2.outputs.ok != 'true'
+      shell: bash
+      run: python3 scripts/check_cards.py "${{ inputs.theme }}"
