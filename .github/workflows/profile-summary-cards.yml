@@ -1,0 +1,46 @@
+name: Profile Summary Cards
+
+on:
+  schedule:
+    # The upstream example's "* */24 * * *" fires every minute of hour 0.
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    env:
+      # Read-only PAT so private contributions are counted; pushes use the
+      # workflow token persisted by actions/checkout.
+      GITHUB_TOKEN: ${{ secrets.SUMMARY_GITHUB_TOKEN }}
+    steps:
+      - uses: actions/checkout@v5
+      # Each run wipes profile-summary-card-output, so the light theme is set
+      # aside before the dark run and restored afterwards.
+      - uses: ./.github/actions/summary-cards
+        with:
+          theme: github
+          username: ${{ github.repository_owner }}
+      - run: mv profile-summary-card-output/github "$RUNNER_TEMP/github"
+      - uses: ./.github/actions/summary-cards
+        with:
+          theme: github_dark
+          username: ${{ github.repository_owner }}
+      - run: mv "$RUNNER_TEMP/github" profile-summary-card-output/github
+      - uses: yoshi389111/github-profile-3d-contrib@latest
+        env:
+          USERNAME: ${{ github.repository_owner }}
+      - run: python3 scripts/build_stats.py ${{ github.repository_owner }} profile-languages
+      - run: python3 scripts/postprocess_3d.py profile-3d-contrib profile-languages/stats.json
+      - run: python3 scripts/patch_summary_cards.py profile-summary-card-output profile-languages/stats.json
+      - run: python3 scripts/check_readme_images.py README.md
+      - name: Commit generated images
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git add -A profile-summary-card-output profile-3d-contrib profile-languages
+          if git commit -m "Update profile images"; then
+            git push
+          fi
